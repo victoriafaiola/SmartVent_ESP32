@@ -1,59 +1,54 @@
 #include "mqtt.h"
-
+#include "wifi.h"
+#include "config.h"
+#include <PubSubClient.h>
+#include <WiFi.h>
 
 WiFiClient espClient;
 PubSubClient client(espClient);
 
+const char* mqtt_server = "IP Broker";  
+const char* mqtt_user = "User";  
+const char* mqtt_pass = "Password";  
 
-void conectar_wifi() {
-  Serial.print("Conectando a WiFi..."); // Conexión al WiFi
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
-  }
-  Serial.println("Conectado a WiFi!");
+//--Inicializates broker
+void broker_init() {
+    client.setServer(mqtt_server, 1883);  
+    client.setCallback(mqtt_callback);    
 }
 
-
-void conectar_mqtt() {
-  client.setServer(MQTT_SERVER, 1883);  // Conexión al broker MQTT
-  while (!client.connected()) {
-    Serial.print("Conectando a MQTT...");
-    if (client.connect("ESP32_Client")) {
-      Serial.println("Conectado a MQTT");
-    } else {
-      Serial.print("Error de conexión, reintentando...");
-      delay(5000);
+//--Broker conection
+bool broker_conn(void) {
+    if (!client.connected()) {
+        while (!client.connected()) {
+            Serial.print("Conect to MQTT...");
+            if (client.connect("SmartVent", mqtt_user, mqtt_pass)) {
+                Serial.println("Conected");
+                client.subscribe("smartvent/commands");  
+            } else {
+                Serial.print("Try to reconect...");
+                delay(5000);
+            }
+        }
     }
-  }
+    return client.connected();
 }
 
-
-void reconectar_mqtt() {
-  if (!client.connected()) {
-    conectar_mqtt();
-  }
-  client.loop();
+//--Publish
+bool broker_pub(const char* topic, const char* message) {
+    return client.publish(topic, message);  
 }
 
+// Función de callback para recibir mensajes (si es necesario)
+void mqtt_callback(char* topic, byte* payload, unsigned int length) {
+    Serial.print("Mensaje recibido en tema: ");
+    Serial.println(topic);
 
-void publicar_datos(float temperatura, float humedad, bool ventilador_estado) {
-  if (!client.connected()) {
-    reconectar_mqtt();
-  }
-  client.loop();
+    if (String(topic) == "smartvent/commands") {
+    }
+}
 
-
-  // Publicar datos de temperatura, humedad y estado del ventilador en MQTT
-  char temp_str[8];
-  dtostrf(temperatura, 1, 2, temp_str);
-  client.publish("home/temperature", temp_str);
-
-
-  char hum_str[8];
-  dtostrf(humedad, 1, 2, hum_str);
-  client.publish("home/humidity", hum_str);
-
-
-  client.publish("home/fan", ventilador_estado ? "ON" : "OFF");
+// Función para mantener la conexión con el broker
+void broker_loop() {
+    client.loop();  
+}
