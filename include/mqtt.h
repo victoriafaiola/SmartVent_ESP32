@@ -7,6 +7,7 @@
 #include <LittleFS.h>
 #include "setup.h"
 #include "internet.h"
+#include "cert.h"
 
 
 #define RECONN_MQTT_TIMEOUT              20000      

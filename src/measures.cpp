@@ -17,7 +17,6 @@ extern Config config;
 
 //Data array with variables to measure
 Data data[] = {
-    // name, raw_value, inst_value, ave_value, sd_value, max_value, min_value, sensor, type, pin
     "Temperature", TEMPERATURE, 0, 0, 0, 0, 0, 0, DHT11_SENSOR, ANALOG_VAR, SENSOR_PIN,0,
     "Humidity", HUMIDITY, 0, 0, 0, 0, 0, 0, DHT11_SENSOR, ANALOG_VAR, SENSOR_PIN,0
 };

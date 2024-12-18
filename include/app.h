@@ -4,6 +4,9 @@
 //Includes
 #include <Arduino.h>
 #include "config.h"
+#include "internet.h"
+#include "functions.h"
+#include "mqtt.h"
 
 //Prototypes
 void App_loop(void);

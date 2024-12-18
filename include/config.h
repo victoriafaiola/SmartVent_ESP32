@@ -29,6 +29,13 @@ struct Config {
   const char* ssid_pass;
   const char* ap_ssid;
   const char* ap_pass;
+  const char* mqtt_server;
+  uint16_t mqtt_tcp;
+  String ssid;
+  String ssid_pass;
+  uint8_t irr_hour;
+  uint8_t irr_minute;
+  uint8_t irr_time;
 };
 
 #endif

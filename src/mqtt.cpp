@@ -209,6 +209,4 @@ void broker_FSM_blink_led(uint8_t __mqtt_state){
         break;
     }
         _mqtt_last_state=__mqtt_state;
-    
     }
-}
