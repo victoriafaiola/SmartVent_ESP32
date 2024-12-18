@@ -1,36 +1,20 @@
-#include "wifi.h"
 #include <WiFi.h>
+#include "internet.h"
 
-//--Enumerations
-enum FSM_LED_STATES{ 
-    LED_ON = 0, 
-    LED_OFF, 
-    LED_STOP, 
-    LED_WAIT_ON, 
-    LED_WAIT_OFF
-};
-
-//--Local variables
+//Local variables
 uint32_t _wifi_crono;
 uint8_t _wifi_state = RECONNECT;
 uint8_t _wifi_last_state = DISCONNECTED;
 uint8_t _try_wifi_reconn=1;
-uint8_t _led_state = LED_OFF;
 bool _flag_wifi_reconnected=0;
 uint32_t _ton;
 uint32_t _toff;
 bool _ap_state;
 
-//--Prototypes
-void led_welcome(void);
-void led_blink(uint8_t ton, uint8_t toff, uint8_t led_pin);
-void led_flash(uint8_t ton, uint8_t count, uint8_t led_pin);
-void led_blink_FSM(uint8_t ton, uint8_t toff, uint8_t led_pin);
-
-//--Extern variables
+//Extern variables
 extern Config config;
 
-//--Init and connect wifi network
+//Init and connect wifi network
 bool wifi_init(WiFiMode_t mode){    
     WiFi.persistent(false);
     WiFi.mode(mode);
@@ -38,7 +22,7 @@ bool wifi_init(WiFiMode_t mode){
     WiFi.setAutoReconnect(false);
     WiFi.disconnect();
 
-    //--WiFi mode
+    //WiFi mode
     switch (mode){
         case WIFI_AP_STA:
             _APconnect();
@@ -60,7 +44,7 @@ bool wifi_init(WiFiMode_t mode){
     }
 }
 
-//--FMS for maintain wifi connection. Return state of connection (T/F)
+//FMS for maintain wifi connection. Return state of connection (T/F)
 bool wifi_loop(void){
   switch (_wifi_state){
     case CONNECTED:
@@ -126,7 +110,7 @@ bool wifi_loop(void){
 
 
 
-//--Connect to wifi network. Return state of connection (T/F)
+//Connect to wifi network. Return state of connection (T/F)
 bool _connect(void){
   Serial.printf("Connecting to %s with %s password", config.ssid, config.ssid_pass);
   WiFi.begin(config.ssid, config.ssid_pass);
@@ -153,7 +137,7 @@ bool _connect(void){
   }
 }
 
-//--State machine for wifi led
+//State machine for wifi led
 void _FSM_state_led(uint8_t __wifi_state, uint8_t led){
   if(_wifi_last_state!=__wifi_state){
     switch (_wifi_state){
@@ -178,11 +162,9 @@ void _FSM_state_led(uint8_t __wifi_state, uint8_t led){
     }
     _wifi_last_state=__wifi_state;
   }
-  led_blink_FSM(_ton, _toff, led);
 }
 
-
-//--Get the wifi state for state machine. Return state (see FSM_WIFI_STATES enum in wifi.h)
+//Get the wifi state for state machine. Return state (see FSM_WIFI_STATES enum in wifi.h)
 uint8_t _get_wifi_status(void){
   switch (WiFi.status()){
     case WL_CONNECTED:

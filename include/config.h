@@ -1,28 +1,28 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
-//--Includes
+//Includes
 #include <Arduino.h>
 
-//--Hardware pins
+//Hardware pins
 
-//--Sensor pin
+//Sensor pin
 #define SENSOR_PIN                 2
 
-//--Relay pin
+//Relay pin
 #define RELAY_PIN                  13
 
-//--Oled pins
+//Oled pins
 #define OLED_SCL_PIN               22
 #define OLED_SDA_PIN               23
 
-//--Led pin
+//Led pin
 #define ONBOARD_LED_PIN            5  
 
-//--Software constants
+//Software constants
 #define SERIAL_BAUDRATE             19200
 
-//--Structures
+//Structures
 struct Config {
   const char* device;
   const char* ssid;

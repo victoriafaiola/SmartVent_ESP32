@@ -1,17 +1,17 @@
 #ifndef OLED_H
 #define OLED_H
 
-//--Includes
+//Includes
 #include <Arduino.h>
 #include "config.h"
 #include <Wire.h>
 #include <U8g2lib.h>
 
-//--Oled pin definitions
+//Oled pin definitions
 #define U8LOG_WIDTH     16
 #define U8LOG_HEIGHT    8
 
-//--Areas screen
+//Areas screen
 struct areaScreen
 {
   uint8_t xorg;

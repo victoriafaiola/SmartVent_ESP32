@@ -1,17 +1,17 @@
 #ifndef RELAY_H
 #define RELAY_H
 
-//--Includes
+//Includes
 #include <Arduino.h>
 
 
-//--Inicializates relay
+//Inicializates relay
 void relay_init();
 
-//--Fan on
+//Fan on
 void relay_on();
 
-//--Fan off
+//Fan off
 void relay_off();
 
 

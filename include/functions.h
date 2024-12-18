@@ -1,7 +1,7 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 
-//--Includes
+//Includes
 #include <Arduino.h>
 #include <ArduinoJson.h>
 #include "config.h"

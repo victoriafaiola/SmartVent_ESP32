@@ -1,11 +1,11 @@
 #ifndef SETUP_H
 #define SETUP_H
 
-//--Includes
+//Includes
 #include <Arduino.h>
 #include "config.h"
 
-//--Prototypes
+//Prototypes
 void App_setup(void);
 
 #endif

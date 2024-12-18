@@ -1,11 +1,11 @@
 #ifndef APP_H
 #define APP_H
 
-//--Includes
+//Includes
 #include <Arduino.h>
 #include "config.h"
 
-//--Prototypes
+//Prototypes
 void App_loop(void);
 
 #endif

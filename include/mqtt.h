@@ -1,12 +1,12 @@
 #ifndef MQTT_H
 #define MQTT_H
 
-//--Includes
+//Includes
 #include <Arduino.h>
 #include <PubSubClient.h>
 #include <LittleFS.h>
 #include "setup.h"
-#include "wifi.h"
+#include "internet.h"
 
 
 #define RECONN_MQTT_TIMEOUT              20000      
