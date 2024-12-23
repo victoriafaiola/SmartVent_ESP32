@@ -6,7 +6,7 @@ uint8_t u8log_buffer[U8LOG_WIDTH*U8LOG_HEIGHT];
 U8X8LOG u8x8log;
 
 //Local variables
-uint32_t start_clock=millis();
+uint32_t start_clock;
 
 //extern variables
 extern float temperature;

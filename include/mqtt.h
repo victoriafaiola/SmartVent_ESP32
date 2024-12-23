@@ -4,7 +4,6 @@
 //Includes
 #include <Arduino.h>
 #include <PubSubClient.h>
-#include <LittleFS.h>
 #include "setup.h"
 #include "internet.h"
 #include "cert.h"

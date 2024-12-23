@@ -20,14 +20,14 @@ bool _flag_mqtt_reconnected=0;
 
 //Extern variables
 extern Config config;
-extern const char * topic_telemetry;
+const char * topic_telemetry;
 extern const char * topic_attributes;
 extern const char * topic_rpc;
 
 
 void broker_init(void){
     wifi_client.setCACert(ca_cert);
-    wifi_client.setInsecure();
+    //wifi_client.setInsecure();
     mqtt.setCallback(rpc_proc);
     mqtt.setServer(config.mqtt_server, config.mqtt_tcp);
 }

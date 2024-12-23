@@ -8,7 +8,7 @@ extern Config config;
 uint8_t flag_push=0;
 uint8_t flag_push_att=1;
 unsigned long long ts;
-uint32_t start_clock;
+extern uint32_t start_clock;
 
 void publish_measures(){
     StaticJsonDocument<200> pub;

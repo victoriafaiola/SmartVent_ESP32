@@ -49,12 +49,12 @@ struct Data {
 };
 
 //Public prototypes
-void measures_init(void);
+void measure_init(void);
 uint8_t measures_count(void);
 Data* measures_loop(void);
 
 //Private prototypes
-void measures_read_sensor(void);
-float measures_unit_calc(uint8_t reg_idx, uint16_t unit);
+void _measure_read_sensor(void);
+float _measure_unit_calc(uint8_t reg_idx, uint16_t unit);
 
 #endif

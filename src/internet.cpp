@@ -187,3 +187,7 @@ uint8_t _get_wifi_status(void){
       break;
   }
 }
+
+void _APconnect(void){
+  // void function
+}

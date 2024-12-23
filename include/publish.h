@@ -6,6 +6,7 @@
 #include "mqtt.h"
 #include "config.h"
 #include "setup.h"
+#include "oled.h"
 
 
 #define PUBLISH_INTERVAL 10000

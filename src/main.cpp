@@ -25,7 +25,7 @@ int maxHumidity = 65;   // Humidity limit default
 bool fanState = false;  // Fan state default (off)
 
 // Principal function
-void control_fan(int TEMPERATURE, int HUMIDITY) {
+/*void control_fan(int TEMPERATURE, int HUMIDITY) {
     if (TEMPERATURE > maxTemp || HUMIDITY > maxHumidity) {
         relay_on(); 
         Serial.println("Fan on"); 
@@ -34,13 +34,24 @@ void control_fan(int TEMPERATURE, int HUMIDITY) {
         relay_off(); 
         Serial.println("Fan off"); 
     }
-}
+}*/
 
 void setup() {
-    measures_init;
-    relay_init;
-    oled88_init;
-    wifi_init;
-    publish_measures;
-    publish_relay;
+    measure_init();
+    relay_init();
+    oled88_init();
+    wifi_init(WIFI_STA);
+    publish_measures();
+    publish_relay();
+}
+
+void loop(void){
+        if (TEMPERATURE > maxTemp || HUMIDITY > maxHumidity) {
+        relay_on(); 
+        Serial.println("Fan on"); 
+    }
+    else {
+        relay_off(); 
+        Serial.println("Fan off"); 
+    }
 }
