@@ -18,6 +18,8 @@
 #include "relay.h"
 #include "setup.h"
 
+//--Instantiate data structure
+extern Data data[];
 
 // Variables
 int maxTemp = 25;       // Temperature limit default
@@ -41,12 +43,12 @@ void setup() {
     relay_init();
     oled88_init();
     wifi_init(WIFI_STA);
-    publish_measures();
-    publish_relay();
+    //publish_measures();
+    //publish_relay();
 }
 
 void loop(void){
-        if (TEMPERATURE > maxTemp || HUMIDITY > maxHumidity) {
+    if (data[TEMPERATURE].ave_value > maxTemp || data[HUMIDITY].ave_value > maxHumidity) {
         relay_on(); 
         Serial.println("Fan on"); 
     }
